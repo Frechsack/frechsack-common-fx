@@ -1,20 +1,51 @@
 package com.frechsack.dev.common.fx.container;
 
+/**
+ * A {@link TablePaneDefinition} defines how a {@link TablePane} row or column behaves.<br> A {@code TablePaneDefinition} assigns a {@link SizeMode}
+ * and a {@code SizeMode} depending size.<br> A {@code TablePaneDefinition} contains a minimum and maximum size too.
+ *
+ * @see SizeMode
+ * @see TablePane
+ */
 public class TablePaneDefinition implements Cloneable
 {
+    /* *****************************************************************************
+     *                                                                             *
+     * Attributes
+     *                                                                             *
+     ******************************************************************************/
     private SizeMode sizeMode;
     private double   size;
     private double   minSize = -1;
     private double   maxSize = -1;
 
-
+    /* *****************************************************************************
+     *                                                                             *
+     * Methods
+     *                                                                             *
+     ******************************************************************************/
+    /**
+     * Creates a new instance of {@code TablePaneDefinition} with a given {@code SizeMode} and size.
+     *
+     * @param sizeMode The  {@code SizeMode}
+     * @param size     The size.
+     */
     public TablePaneDefinition(SizeMode sizeMode, double size)
     {
         this.sizeMode = sizeMode;
         this.size     = size;
     }
 
-    public TablePaneDefinition(SizeMode sizeMode, double minSize, double size, double maxSize)
+    /**
+     * Creates a new instance of {@code TablePaneDefinition} with a given {@code SizeMode}, size, minimum and maximum size. <br> If the different
+     * sizes are invalid, they will be set right.
+     *
+     * @param sizeMode The  {@code SizeMode}
+     * @param size     The size.
+     * @param minSize  The minimum size.
+     * @param maxSize  The maximum size.
+     */
+    public TablePaneDefinition(SizeMode sizeMode, double size, double minSize, double maxSize)
     {
         this.sizeMode = sizeMode;
         this.minSize  = minSize;
@@ -22,7 +53,14 @@ public class TablePaneDefinition implements Cloneable
         this.size     = size;
     }
 
-    public TablePaneDefinition(double minSize, double additionalSize, double maxSize)
+    /**
+     * Creates a new instance of {@code TablePaneDefinition} with a {@link SizeMode#AUTO_SIZE} {@code SizeMode}.
+     *
+     * @param additionalSize The additional size.
+     * @param minSize        The minimum size.
+     * @param maxSize        The maximum size.
+     */
+    public TablePaneDefinition(double additionalSize, double minSize, double maxSize)
     {
         this.sizeMode = SizeMode.AUTO_SIZE;
         this.minSize  = minSize;
@@ -30,6 +68,11 @@ public class TablePaneDefinition implements Cloneable
         this.size     = additionalSize;
     }
 
+    /**
+     * Creates Creates a new instance of {@code TablePaneDefinition}. The created Object is a deep copy of the given {@code TablePaneDefinition}.
+     *
+     * @param copy The base.
+     */
     public TablePaneDefinition(TablePaneDefinition copy)
     {
         this.sizeMode = copy.sizeMode;
@@ -37,6 +80,8 @@ public class TablePaneDefinition implements Cloneable
         this.minSize  = copy.minSize;
         this.maxSize  = copy.maxSize;
     }
+
+    // Size Mode
 
     public boolean isAutoSize()
     {
@@ -53,14 +98,21 @@ public class TablePaneDefinition implements Cloneable
         return sizeMode == SizeMode.ABSOLUTE;
     }
 
-    public void setSize(double size)
+    public SizeMode getSizeMode()
     {
-        this.size = size;
+        return sizeMode;
     }
 
     public void setSizeMode(SizeMode sizeMode)
     {
         this.sizeMode = sizeMode;
+    }
+
+    // Size
+
+    public void setSize(double size)
+    {
+        this.size = size;
     }
 
     public double getSize()
@@ -88,9 +140,14 @@ public class TablePaneDefinition implements Cloneable
         return minSize;
     }
 
-    public SizeMode getSizeMode()
+    public void setMaxSize(double maxSize)
     {
-        return sizeMode;
+        this.maxSize = maxSize;
+    }
+
+    public void setMinSize(double minSize)
+    {
+        this.minSize = minSize;
     }
 
     @SuppressWarnings("MethodDoesntCallSuperMethod")

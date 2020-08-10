@@ -9,8 +9,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * A {@link TablePane} organizes {@code Nodes} in a grid of columns and rows. Each column and row can be defined. <br> Columns and rows are not added
+ * and removed dynamic when Nodes are added.<br> The {@link TablePaneConstraints} of a Node are stored in the Node itself.<br> The layout is not
+ * updated automatically if the {@code TablePaneRows} or {@code TablePaneColumns} are modified.<br> The function {@link TablePane#layout()} should be
+ * called manually.
+ * @see TablePaneDefinition
+ * @see TablePaneConstraints
+ * @see FillMode
+ * @see SizeMode
+ */
 public class TablePane extends Pane
 {
+    /*******************************************************************************
+     *                                                                             *
+     * Attributes
+     *                                                                             *
+     ******************************************************************************/
     private static final String                    TABLE_PANE_CONSTRAINTS_KEY = "table-pane-constraints";
     private final        List<TablePaneDefinition> rowList                    = new ArrayList<>();
     private final        List<TablePaneDefinition> columnList                 = new ArrayList<>();
@@ -19,8 +34,28 @@ public class TablePane extends Pane
     private              double[]                  columnWidths;
     private              double[]                  rowHeights;
 
+    /* *****************************************************************************
+     *                                                                             *
+     * Methods
+     *                                                                             *
+     ******************************************************************************/
+    /**
+     * Creates a new instance of {@code TablePane} with no columns or rows.
+     */
+    public TablePane()
+    {
+        super();
+    }
+
+    /**
+     * Creates a new instance of {@code TablePane} with the defined columns and rows.
+     *
+     * @param tablePaneDefinitions The columns and rows of the {@code TablePane}. You should pass instances of {@link TablePaneColumn} and {@link
+     *                             TablePaneRow}.
+     */
     public TablePane(TablePaneDefinition... tablePaneDefinitions)
     {
+        super();
         for (TablePaneDefinition def : tablePaneDefinitions)
             if (def instanceof TablePaneColumn) columnList.add(def);
             else if (def instanceof TablePaneRow) rowList.add(def);
@@ -29,6 +64,13 @@ public class TablePane extends Pane
 
     }
 
+    /**
+     * Adds a children to this {@code TablePane} with the given {@link TablePaneConstraints}.
+     *
+     * @param child       The child that should be added.
+     * @param constraints The {@code TablePaneConstraints}.
+     * @return An instance of this {@code TablePane}.
+     */
     public TablePane add(Node child, TablePaneConstraints constraints)
     {
         setConstraints(child, constraints);
@@ -36,25 +78,50 @@ public class TablePane extends Pane
         return this;
     }
 
+    /**
+     * Adds a {@link TablePaneDefinition} as a row to this {@link TablePane}. The same {@link TablePaneDefinition} can be added multiple times to this
+     * {@link TablePane}.
+     *
+     * @param definition The {@link TablePaneDefinition}
+     * @return An instance of this {@code TablePane}.
+     */
     public TablePane addRow(TablePaneDefinition definition)
     {
         rowList.add(definition);
         return this;
     }
 
+    /**
+     * Adds a {@link TablePaneDefinition} as a column to this {@link TablePane}. The same {@code TablePaneDefinition} can be added multiple times to
+     * this {@link TablePane}.
+     *
+     * @param definition The {@code TablePaneDefinition}
+     * @return An instance of this {@code TablePane}.
+     */
     public TablePane addColumn(TablePaneDefinition definition)
     {
         columnList.add(definition);
         return this;
     }
 
-
+    /**
+     * Sets the {@link TablePaneConstraints} of the given {@link Node}.
+     *
+     * @param node        The {@code Node}.
+     * @param constraints The {@code Node's} {@code TablePaneConstraints}.
+     */
     public static void setConstraints(Node node, TablePaneConstraints constraints)
     {
         if (constraints == null) node.getProperties().remove(TABLE_PANE_CONSTRAINTS_KEY);
         else node.getProperties().put(TABLE_PANE_CONSTRAINTS_KEY, constraints);
     }
 
+    /**
+     * Returns the {@link TablePaneConstraints} of the given {@link Node}.
+     *
+     * @param node The {@code Node}.
+     * @return The {@code Node's}  {@code TablePaneConstraints}. If the don't exist, a shared instance of {@code TablePaneConstraints} is returned.
+     */
     public static TablePaneConstraints getConstraints(Node node)
     {
         if (node.hasProperties())
@@ -66,11 +133,18 @@ public class TablePane extends Pane
         return TablePaneConstraints.getNullConstraints();
     }
 
+    /**
+     * Returns a list with instances of {@link TablePaneDefinition} who act as a row.
+     * @return A list with instances of {@link TablePaneDefinition}.
+     */
     public List<TablePaneDefinition> getRowList()
     {
         return rowList;
     }
-
+    /**
+     * Returns a list with instances of {@link TablePaneDefinition} who act as a column.
+     * @return A list with instances of {@link TablePaneDefinition}.
+     */
     public List<TablePaneDefinition> getColumnList()
     {
         return columnList;
@@ -134,8 +208,10 @@ public class TablePane extends Pane
             // Anchors
             if (constraints.isAnchorLeft()) nodeBounds.setMinX(nodeArea.getMinX());
             else if (constraints.isAnchorRight()) nodeBounds.setMinX(nodeArea.getMaxX() - nodeBounds.getWidth());
+            else nodeBounds.setMinX(nodeArea.getWidth() / 2 - nodeBounds.getWidth() / 2 + nodeArea.getMinX());
             if (constraints.isAnchorTop()) nodeBounds.setMinY(nodeArea.getMinY());
             else if (constraints.isAnchorBottom()) nodeBounds.setMinY(nodeArea.getMaxY() - nodeBounds.getHeight());
+            else nodeBounds.setMinY(nodeArea.getHeight() / 2 - nodeBounds.getHeight() / 2 + nodeArea.getMinY());
         }
 
         //  System.out.println("NodeBound: " + nodeBounds);
@@ -178,10 +254,6 @@ public class TablePane extends Pane
         else return child.prefHeight(-1);
     }
 
-    private double getMinWidth(Node child)
-    {
-        return getPrefWidth(child);
-    }
 
     private double getPrefHeight(Node child)
     {
@@ -194,12 +266,6 @@ public class TablePane extends Pane
         }
         else return child.prefHeight(-1);
     }
-
-    private double getMinHeight(Node child)
-    {
-        return getPrefHeight(child);
-    }
-
 
     private void calculateColumnWidths()
     {
@@ -235,7 +301,7 @@ public class TablePane extends Pane
         if (calculatedCounter == COLUMN_WIDTHS_LENGTH) return;
 
         // Calculate auto size.
-        double               preferredChildWidth = 0;
+        double               preferredChildWidth;
         TablePaneConstraints constraints;
 
         for (int i = 0; i < COLUMN_WIDTHS_LENGTH; i++)
@@ -299,10 +365,10 @@ public class TablePane extends Pane
         if (rowHeights == null || rowHeights.length != rowList.size()) rowHeights = new double[rowList.size()];
         else Arrays.fill(rowHeights, 0);
         // Calculate remaining size.
-        double    remainingHeight       = getHeight() - getInsets().getTop() - getInsets().getBottom();
+        double    remainingHeight    = getHeight() - getInsets().getTop() - getInsets().getBottom();
         double    preferredHeight;
         final int ROW_HEIGHTS_LENGTH = rowHeights.length;
-        int       calculatedCounter    = 0;
+        int       calculatedCounter  = 0;
         // Calculate absolute.
         for (int i = 0; i < ROW_HEIGHTS_LENGTH; i++)
         {
@@ -318,7 +384,7 @@ public class TablePane extends Pane
             if (preferredHeight > remainingHeight) preferredHeight = remainingHeight;
             if (row.isMinSizeSet() && row.getMinSize() > preferredHeight) preferredHeight = row.getMinSize();
             rowHeights[i] = preferredHeight;
-                              remainingHeight -= preferredHeight;
+                            remainingHeight -= preferredHeight;
             calculatedCounter++;
             // We can't break here if no space is remaining, because that could create an ugly looking behaviour of spanning children.
         }
@@ -326,7 +392,7 @@ public class TablePane extends Pane
         if (calculatedCounter == ROW_HEIGHTS_LENGTH) return;
 
         // Calculate auto size.
-        double               preferredChildHeight = 0;
+        double               preferredChildHeight;
         TablePaneConstraints constraints;
 
         for (int i = 0; i < ROW_HEIGHTS_LENGTH; i++)
@@ -357,7 +423,7 @@ public class TablePane extends Pane
             if (preferredHeight > remainingHeight) preferredHeight = remainingHeight;
             if (row.isMinSizeSet() && row.getMinSize() > preferredHeight) preferredHeight = row.getMinSize();
             rowHeights[i] = preferredHeight;
-                              remainingHeight -= preferredHeight;
+                            remainingHeight -= preferredHeight;
             calculatedCounter++;
         }
         // Check if anything is calculated
@@ -378,7 +444,7 @@ public class TablePane extends Pane
             if (row.isMinSizeSet() && row.getMinSize() > preferredHeight) preferredHeight = row.getMinSize();
 
             rowHeights[i] = preferredHeight;
-                              remainingHeight -= preferredHeight;
+                            remainingHeight -= preferredHeight;
             // We can't break here if no space is remaining, because that could create an ugly looking behaviour of spanning children.
         }
     }
