@@ -2,10 +2,19 @@ package com.frechsack.dev.common.fx.container;
 
 public class TablePaneRow extends TablePaneDefinition implements Cloneable
 {
-
-    public TablePaneRow(byte type, double size)
+    public TablePaneRow(SizeMode sizeMode, double size)
     {
-        super(type, size);
+        super(sizeMode, size);
+    }
+
+    public TablePaneRow(SizeMode sizeMode, double minSize, double size, double maxSize)
+    {
+        super(sizeMode, minSize, size, maxSize);
+    }
+
+    public TablePaneRow(double minSize, double additionalSize, double maxSize)
+    {
+        super(minSize, additionalSize, maxSize);
     }
 
     public TablePaneRow(TablePaneRow copy)

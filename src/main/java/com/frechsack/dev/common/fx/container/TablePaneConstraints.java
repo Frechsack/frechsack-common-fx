@@ -1,6 +1,10 @@
 package com.frechsack.dev.common.fx.container;
 
-public class TablePaneConstraints implements TablePaneConstants, Cloneable
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+
+public class TablePaneConstraints implements Cloneable
 {
     private static TablePaneConstraints nullConstraints;
 
@@ -20,12 +24,8 @@ public class TablePaneConstraints implements TablePaneConstants, Cloneable
     private int insetLeft;
     private int insetRight;
 
-    private boolean isSizingVertical   = true;
-    private boolean isSizingHorizontal = true;
-    private boolean isAnchorLeft       = false;
-    private boolean isAnchorRight      = false;
-    private boolean isAnchorTop        = false;
-    private boolean isAnchorBottom     = false;
+    private FillMode fillMode = FillMode.BOTH;
+    private Pos      anchor   = Pos.CENTER;
 
     public TablePaneConstraints(int columnIndex, int rowIndex, int columnSpan, int rowSpan, int insetTop, int insetRight, int insetBottom,
                                 int insetLeft)
@@ -38,12 +38,10 @@ public class TablePaneConstraints implements TablePaneConstants, Cloneable
         this.insetBottom = insetBottom;
         this.insetLeft   = insetLeft;
         this.insetRight  = insetRight;
-        sizing(BOTH);
-        anchor(CENTER);
     }
 
     public TablePaneConstraints(int columnIndex, int rowIndex, int columnSpan, int rowSpan, int insetTop, int insetRight, int insetBottom,
-                                int insetLeft, byte sizing, byte anchor)
+                                int insetLeft, FillMode fillMode, Pos anchor)
     {
         this.columnIndex = columnIndex;
         this.rowIndex    = rowIndex;
@@ -53,8 +51,34 @@ public class TablePaneConstraints implements TablePaneConstants, Cloneable
         this.insetBottom = insetBottom;
         this.insetLeft   = insetLeft;
         this.insetRight  = insetRight;
-        sizing(sizing);
-        anchor(anchor);
+        this.anchor      = anchor;
+    }
+
+    public TablePaneConstraints(int columnIndex, int rowIndex, int columnSpan, int rowSpan, int insets, FillMode fillMode, Pos anchor)
+    {
+        this.columnIndex = columnIndex;
+        this.rowIndex    = rowIndex;
+        this.columnSpan  = columnSpan;
+        this.rowSpan     = rowSpan;
+        this.insetTop    = insets;
+        this.insetBottom = insets;
+        this.insetLeft   = insets;
+        this.insetRight  = insets;
+        this.fillMode    = fillMode;
+        this.anchor      = anchor;
+    }
+
+    public TablePaneConstraints(int columnIndex, int rowIndex, int columnSpan, int rowSpan, int insets, FillMode fillMode)
+    {
+        this.columnIndex = columnIndex;
+        this.rowIndex    = rowIndex;
+        this.columnSpan  = columnSpan;
+        this.rowSpan     = rowSpan;
+        this.insetTop    = insets;
+        this.insetBottom = insets;
+        this.insetLeft   = insets;
+        this.insetRight  = insets;
+        this.fillMode    = fillMode;
     }
 
     public TablePaneConstraints(TablePaneConstraints copy)
@@ -63,57 +87,27 @@ public class TablePaneConstraints implements TablePaneConstants, Cloneable
         rowIndex    = copy.rowIndex;
         columnSpan  = copy.columnSpan;
         rowSpan     = copy.rowSpan;
-
-        isAnchorBottom = copy.isAnchorBottom;
-        isAnchorLeft   = copy.isAnchorLeft;
-        isAnchorTop    = copy.isAnchorTop;
-        isAnchorRight  = copy.isAnchorRight;
-
+        anchor      = copy.anchor;
+        fillMode    = copy.fillMode;
         insetTop    = copy.insetTop;
         insetBottom = copy.insetBottom;
         insetLeft   = copy.insetLeft;
         insetRight  = copy.insetRight;
-
-        this.isSizingVertical   = copy.isSizingVertical;
-        this.isSizingHorizontal = copy.isSizingHorizontal;
     }
 
-    private void sizing(byte sizing)
+    public Pos getAnchor()
     {
-        if ((sizing & VERTICAL) == VERTICAL) isSizingVertical = true;
-        if ((sizing & HORIZONTAL) == HORIZONTAL) isSizingHorizontal = true;
+        return anchor;
     }
 
-    private void anchor(byte anchor)
+    public FillMode getFillMode()
     {
-        if ((anchor & NORTH) == NORTH) isAnchorTop = true;
-        if ((anchor & SOUTH) == SOUTH) isAnchorBottom = true;
-        if ((anchor & EAST) == EAST) isAnchorRight = true;
-        if ((anchor & WEST) == WEST) isAnchorLeft = true;
-
+        return fillMode;
     }
 
-    public byte getAnchor()
+    public boolean isSizingBoth()
     {
-        byte result = 0;
-        if (isAnchorBottom) result += SOUTH;
-        if (isAnchorTop) result += NORTH;
-        if (isAnchorLeft) result += WEST;
-        if (isAnchorRight) result += EAST;
-        return result;
-    }
-
-    public byte getSizing()
-    {
-        byte result = 0;
-        if (isSizingHorizontal) result += HORIZONTAL;
-        if (isSizingVertical) result += VERTICAL;
-        return result;
-    }
-
-    boolean isSizingBoth()
-    {
-        return isSizingHorizontal && isSizingVertical;
+        return fillMode == FillMode.BOTH;
     }
 
     public int getColumnIndex()
@@ -166,37 +160,35 @@ public class TablePaneConstraints implements TablePaneConstants, Cloneable
 
     public boolean isSizingVertical()
     {
-        return isSizingVertical;
+        return fillMode.isVertical();
     }
-
 
     public boolean isSizingHorizontal()
     {
-        return isSizingHorizontal;
+        return fillMode.isHorizontal();
     }
-
 
     public boolean isAnchorLeft()
     {
-        return isAnchorLeft;
+        return anchor.getHpos() == HPos.LEFT;
     }
 
 
     public boolean isAnchorRight()
     {
-        return isAnchorRight;
+        return anchor.getHpos() == HPos.RIGHT;
     }
 
 
     public boolean isAnchorTop()
     {
-        return isAnchorTop;
+        return anchor.getVpos() == VPos.TOP;
     }
 
 
     public boolean isAnchorBottom()
     {
-        return isAnchorBottom;
+        return anchor.getVpos() == VPos.BOTTOM;
     }
 
 
@@ -215,7 +207,6 @@ public class TablePaneConstraints implements TablePaneConstants, Cloneable
     {
         this.columnSpan = columnSpan;
     }
-
 
 
     public void setRowSpan(int rowSpan)
@@ -248,33 +239,21 @@ public class TablePaneConstraints implements TablePaneConstants, Cloneable
     }
 
 
-    public void setSizingVertical(boolean isSizingVertical)
+    @Override
+    public String toString()
     {
-        this.isSizingVertical = isSizingVertical;
-    }
-
-
-    public void setSizingHorizontal(boolean isSizingHorizontal)
-    {
-        this.isSizingHorizontal = isSizingHorizontal;
-    }
-
-
-    public void setAnchorLeft(boolean isAnchorLeft)
-    {
-        this.isAnchorLeft = isAnchorLeft;
-    }
-
-
-    public void setAnchorRight(boolean isAnchorRight)
-    {
-        this.isAnchorRight = isAnchorRight;
-    }
-
-
-    public void setAnchorTop(boolean isAnchorTop)
-    {
-        this.isAnchorTop = isAnchorTop;
+        return "TablePaneConstraints{" +
+                "columnIndex=" + columnIndex +
+                ", rowIndex=" + rowIndex +
+                ", columnSpan=" + columnSpan +
+                ", rowSpan=" + rowSpan +
+                ", insetTop=" + insetTop +
+                ", insetBottom=" + insetBottom +
+                ", insetLeft=" + insetLeft +
+                ", insetRight=" + insetRight +
+                ", fillMode=" + fillMode +
+                ", anchor=" + anchor +
+                '}';
     }
 
     @Override
