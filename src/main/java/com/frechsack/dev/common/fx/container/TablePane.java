@@ -14,6 +14,7 @@ import java.util.List;
  * and removed dynamic when Nodes are added.<br> The {@link TablePaneConstraints} of a Node are stored in the Node itself.<br> The layout is not
  * updated automatically if the {@code TablePaneRows} or {@code TablePaneColumns} are modified.<br> The function {@link TablePane#layout()} should be
  * called manually.
+ *
  * @see TablePaneDefinition
  * @see TablePaneConstraints
  * @see FillMode
@@ -27,6 +28,7 @@ public class TablePane extends Pane
      *                                                                             *
      ******************************************************************************/
     private static final String                    TABLE_PANE_CONSTRAINTS_KEY = "table-pane-constraints";
+    private final        double                    SIZE_MODIFIER              = 1.01;
     private final        List<TablePaneDefinition> rowList                    = new ArrayList<>();
     private final        List<TablePaneDefinition> columnList                 = new ArrayList<>();
     private final        WriteableRectangle2D      nodeArea                   = new WriteableRectangle2D(0, 0, 0, 0);
@@ -39,6 +41,7 @@ public class TablePane extends Pane
      * Methods
      *                                                                             *
      ******************************************************************************/
+
     /**
      * Creates a new instance of {@code TablePane} with no columns or rows.
      */
@@ -135,14 +138,17 @@ public class TablePane extends Pane
 
     /**
      * Returns a list with instances of {@link TablePaneDefinition} who act as a row.
+     *
      * @return A list with instances of {@link TablePaneDefinition}.
      */
     public List<TablePaneDefinition> getRowList()
     {
         return rowList;
     }
+
     /**
      * Returns a list with instances of {@link TablePaneDefinition} who act as a column.
+     *
      * @return A list with instances of {@link TablePaneDefinition}.
      */
     public List<TablePaneDefinition> getColumnList()
@@ -161,10 +167,7 @@ public class TablePane extends Pane
     {
         // Calculate Columns and Rows sizes
         calculateColumnWidths();
-
         calculateRowHeights();
-        System.out.println("ColumnWidths: " + Arrays.toString(columnWidths));
-        System.out.println("ColumnHeights: " + Arrays.toString(rowHeights));
         TablePaneConstraints constraints;
         for (Node child : getChildren())
         {
@@ -248,10 +251,10 @@ public class TablePane extends Pane
         {
             Control control = (Control) child;
             // Check if the "preferred size" is set
-            if (control.getPrefWidth() == USE_COMPUTED_SIZE) return control.prefWidth(control.getHeight());
-            return ((Control) child).getPrefWidth();
+            if (control.getPrefWidth() == USE_COMPUTED_SIZE) return control.prefWidth(control.getHeight()) * SIZE_MODIFIER;
+            return ((Control) child).getPrefWidth() * SIZE_MODIFIER;
         }
-        else return child.prefHeight(-1);
+        else return child.prefHeight(-1) * SIZE_MODIFIER;
     }
 
 
@@ -261,10 +264,10 @@ public class TablePane extends Pane
         {
             Control control = (Control) child;
             // Check if the "preferred size" is set
-            if (control.getPrefHeight() == USE_COMPUTED_SIZE) return control.prefHeight(control.getWidth());
-            return ((Control) child).getPrefHeight();
+            if (control.getPrefHeight() == USE_COMPUTED_SIZE) return control.prefHeight(control.getWidth()) * SIZE_MODIFIER;
+            return ((Control) child).getPrefHeight() * SIZE_MODIFIER;
         }
-        else return child.prefHeight(-1);
+        else return child.prefHeight(-1) * SIZE_MODIFIER;
     }
 
     private void calculateColumnWidths()
@@ -318,8 +321,7 @@ public class TablePane extends Pane
                 // Check if node is valid - if not continue
                 if (!(constraints.getColumnIndex() == i && constraints.getColumnSpan() == 1)) continue;
                 // Calculate the child pref width with insets - the space that is necessary for the node to be represented right.
-                // The size is increased by one, because some nodes do some floating errors, while calculating their preferred size.
-                preferredChildWidth = getPrefWidth(child) + constraints.getInsetLeft() + constraints.getInsetRight() + 1;
+                preferredChildWidth = getPrefWidth(child) + constraints.getInsetLeft() + constraints.getInsetRight();
                 // Set the new calculated values.
                 if (preferredWidth < preferredChildWidth) preferredWidth = preferredChildWidth;
             }
@@ -409,8 +411,7 @@ public class TablePane extends Pane
                 // Check if node is valid - if not continue
                 if (!(constraints.getRowIndex() == i && constraints.getRowSpan() == 1)) continue;
                 // Calculate the child pref width with insets - the space that is necessary for the node to be represented right.
-                // The size is increased by one, because some nodes do some floating errors, while calculating their preferred size.
-                preferredChildHeight = getPrefHeight(child) + constraints.getInsetTop() + constraints.getInsetBottom() + 1;
+                preferredChildHeight = getPrefHeight(child) + constraints.getInsetTop() + constraints.getInsetBottom();
                 // Set the new calculated values.
                 if (preferredHeight < preferredChildHeight) preferredHeight = preferredChildHeight;
             }
@@ -447,6 +448,75 @@ public class TablePane extends Pane
                             remainingHeight -= preferredHeight;
             // We can't break here if no space is remaining, because that could create an ugly looking behaviour of spanning children.
         }
+    }
+
+    @Override
+    protected double computePrefHeight(double width)
+    {
+        TablePaneConstraints constraints;
+        TablePaneDefinition definition;
+        double               height = getInsets().getTop() + getInsets().getBottom();
+        for (int i = 0; i < rowList.size();i++)
+        {
+            definition = rowList.get(i);
+            if (definition.isAbsolute()) height += definition.getSize();
+            else
+            {
+                double preferredRowHeight = 0;
+                double preferredChildHeight = 0;
+                for (Node child : getChildren())
+                {
+                    // If the child is not visible it is not valid.
+                    if (!child.isVisible()) continue;
+                    constraints = getConstraints(child);
+                    // Check if node is valid - if not continue
+                    if (!(constraints.getRowIndex() == i && constraints.getRowSpan() == 1)) continue;
+                    // Calculate the child pref width with insets - the space that is necessary for the node to be represented right.
+                    preferredChildHeight = getPrefHeight(child) + constraints.getInsetTop() + constraints.getInsetBottom();
+                    // Set the new calculated values.
+                    if (preferredRowHeight < preferredChildHeight) preferredRowHeight = preferredChildHeight;
+                }
+                if(definition.isMaxSizeSet() && definition.getMaxSize() < preferredRowHeight) preferredRowHeight = definition.getMaxSize();
+                if(definition.isMinSizeSet() && definition.getMinSize() > preferredRowHeight) preferredRowHeight = definition.getMinSize();
+                height += preferredRowHeight;
+            }
+        }
+        return height;
+    }
+
+
+    @Override
+    protected double computePrefWidth(double height)
+    {
+        TablePaneConstraints constraints;
+        TablePaneDefinition definition;
+        double               width = getInsets().getLeft() + getInsets().getRight();
+        for (int i = 0; i < columnList.size();i++)
+        {
+            definition = columnList.get(i);
+            if (definition.isAbsolute()) width += definition.getSize();
+            else
+            {
+                double preferredRowWidth = 0;
+                double preferredChildWidth = 0;
+                for (Node child : getChildren())
+                {
+                    // If the child is not visible it is not valid.
+                    if (!child.isVisible()) continue;
+                    constraints = getConstraints(child);
+                    // Check if node is valid - if not continue
+                    if (!(constraints.getColumnIndex() == i && constraints.getColumnSpan() == 1)) continue;
+                    // Calculate the child pref width with insets - the space that is necessary for the node to be represented right.
+                    preferredChildWidth = getPrefWidth(child) + constraints.getInsetLeft() + constraints.getInsetRight();
+                    // Set the new calculated values.
+                    if (preferredRowWidth < preferredChildWidth) preferredRowWidth = preferredChildWidth;
+                }
+                if(definition.isMaxSizeSet() && definition.getMaxSize() < preferredRowWidth) preferredRowWidth = definition.getMaxSize();
+                if(definition.isMinSizeSet() && definition.getMinSize() > preferredRowWidth) preferredRowWidth = definition.getMinSize();
+                width += preferredRowWidth;
+            }
+        }
+        return width;
     }
 }
 
