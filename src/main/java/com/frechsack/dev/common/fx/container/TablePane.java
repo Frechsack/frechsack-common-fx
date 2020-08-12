@@ -355,7 +355,7 @@ public class TablePane extends Pane
             if (column.isMinSizeSet() && column.getMinSize() > preferredWidth) preferredWidth = column.getMinSize();
 
             columnWidths[i] = preferredWidth;
-                              remainingWidth -= preferredWidth;
+                             // remainingWidth -= preferredWidth;
             // We can't break here if no space is remaining, because that could create an ugly looking behaviour of spanning children.
         }
     }
@@ -445,7 +445,7 @@ public class TablePane extends Pane
             if (row.isMinSizeSet() && row.getMinSize() > preferredHeight) preferredHeight = row.getMinSize();
 
             rowHeights[i] = preferredHeight;
-                            remainingHeight -= preferredHeight;
+                         //   remainingHeight -= preferredHeight;
             // We can't break here if no space is remaining, because that could create an ugly looking behaviour of spanning children.
         }
     }
