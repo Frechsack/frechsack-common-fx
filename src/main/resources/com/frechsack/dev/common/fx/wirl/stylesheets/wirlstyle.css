@@ -1259,9 +1259,10 @@
     -fx-background-color:-border,-wirl-base-context-menu;
     -fx-background-insets: 0, 1;
 }
+/*
 .combo-box-popup > .list-view:hover {
     -border:-wirl-border-hover;
-}
+}*/
 /*ColorPicker Popup*/
 .color-palette 
 {

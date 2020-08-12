@@ -2,7 +2,12 @@ package com.frechsack.dev.common.fx.container;
 
 /**
  * A {@link TablePaneDefinition} defines how a {@link TablePane} row or column behaves.<br> A {@code TablePaneDefinition} assigns a {@link SizeMode}
- * and a {@code SizeMode} depending size.<br> A {@code TablePaneDefinition} contains a minimum and maximum size too.
+ * and a {@code SizeMode} depending size.<br> A {@code TablePaneDefinition} contains a minimum and maximum size too.<br>
+ *  Implementation details:<br>
+ * {@link SizeMode#AUTO_SIZE} The size property is used as an additional size. The value of it will be added to the calculated size of the content.<br>
+ * {@link SizeMode#RELATIVE} The size property is used as a relative value from 0 - 1.0.<br>
+ * {@link SizeMode#ABSOLUTE} The max size property is ignored.<br>
+ *
  *
  * @see SizeMode
  * @see TablePane
