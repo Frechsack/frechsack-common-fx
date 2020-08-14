@@ -3,7 +3,6 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.8'
     id 'application'
 }
-
 mainClassName = 'com.Launcher'
 
 group 'com.frechsack.dev'
@@ -11,6 +10,13 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+java {
+    modularity.inferModulePath.set(true)
+}
+compileJava   {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies {

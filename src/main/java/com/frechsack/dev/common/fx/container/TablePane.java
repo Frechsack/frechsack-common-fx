@@ -463,7 +463,7 @@ public class TablePane extends Pane
             else
             {
                 double preferredRowHeight = 0;
-                double preferredChildHeight = 0;
+                double preferredChildHeight;
                 for (Node child : getChildren())
                 {
                     // If the child is not visible it is not valid.
@@ -498,7 +498,7 @@ public class TablePane extends Pane
             else
             {
                 double preferredRowWidth = 0;
-                double preferredChildWidth = 0;
+                double preferredChildWidth;
                 for (Node child : getChildren())
                 {
                     // If the child is not visible it is not valid.
