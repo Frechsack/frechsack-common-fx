@@ -276,6 +276,18 @@
 
  /******************************************************************************
  *                                                                             *
+ * ButtonBar
+ *                                                                             *
+ ******************************************************************************/
+.button-bar
+{
+    -fx-background-color:-wirl-base-top-pane;
+    -fx-padding: 2;
+    -fx-spacing: 2;
+}
+
+ /******************************************************************************
+ *                                                                             *
  * Pagination                              
  *                                                                             *
  ******************************************************************************/
@@ -469,8 +481,13 @@
 	-base:-wirl-base-context-menu;
 	-border:-wirl-border-context-menu;
 	-fx-background-color:-border,-base;
-	-fx-background-insets:0,1;
+	-fx-background-insets:0,0 1 0 1;
 	-fx-background-radius:0,0;
+}
+/*Override Background insets*/
+.split-pane:vertical > .split-pane-divider
+{
+	-fx-background-insets:0, 1 0 1 0;
 }
 .split-pane > .split-pane-divider:hover,
 .split-pane > .split-pane-divider:pressed
@@ -481,6 +498,12 @@
 {
 	-base:-wirl-base-focused-item;
 	-border:-wirl-border-hover;
+	-fx-background-insets:0, 1;
+}
+/*Override Background insets*/
+.split-pane:vertical > .split-pane-divider:pressed:hover
+{
+	-fx-background-insets:0, 1;
 }
  /******************************************************************************
  *                                                                             *

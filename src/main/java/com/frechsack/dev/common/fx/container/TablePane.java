@@ -476,6 +476,9 @@ public class TablePane extends Pane
                     // Set the new calculated values.
                     if (preferredRowHeight < preferredChildHeight) preferredRowHeight = preferredChildHeight;
                 }
+                // Add the additional size
+                preferredRowHeight += definition.getSize();
+
                 if(definition.isMaxSizeSet() && definition.getMaxSize() < preferredRowHeight) preferredRowHeight = definition.getMaxSize();
                 if(definition.isMinSizeSet() && definition.getMinSize() > preferredRowHeight) preferredRowHeight = definition.getMinSize();
                 height += preferredRowHeight;
@@ -511,6 +514,9 @@ public class TablePane extends Pane
                     // Set the new calculated values.
                     if (preferredRowWidth < preferredChildWidth) preferredRowWidth = preferredChildWidth;
                 }
+                // Add the additional size
+                preferredRowWidth += definition.getSize();
+
                 if(definition.isMaxSizeSet() && definition.getMaxSize() < preferredRowWidth) preferredRowWidth = definition.getMaxSize();
                 if(definition.isMinSizeSet() && definition.getMinSize() > preferredRowWidth) preferredRowWidth = definition.getMinSize();
                 width += preferredRowWidth;
