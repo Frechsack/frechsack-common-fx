@@ -30,6 +30,11 @@ public enum StainColor
     PROGRESS("-progress"),
 
     /**
+     * The background color of a mark, for example arrows.
+     */
+    MARK("-mark"),
+
+    /**
      * The background color for controls.
      */
     CONTROL_BASE("-control-base"),

@@ -9,6 +9,7 @@
 	-border-focused:			rgb(0,120,215);
 	-text:						black;
 	-progress:					green;
+	-mark:						rgb(100,100,100);
 	/*-progress-gradient:			derive(-progress,100%),linear-gradient( to right, -progress, transparent);*/
 	/******************************************************************************
 		Controls                                               
@@ -22,11 +23,9 @@
 	-control-border-armed: 		rgb(0,84,153);
 	
 	-text-control-base:			white;
-	
 	/******************************************************************************
 		Items  (Selected -> Just one state) (Focused -> More than one)                                           
 	******************************************************************************/	
-	
 	-item-base-selected:		rgb(145,201,247);
 	-item-base-focused:			rgb(86,176,250);
 	/******************************************************************************
@@ -57,7 +56,7 @@
     -fx-max-height: 			10;
     -fx-min-height: 			10;
 	-fx-shape: 					"M 2 6 L 6 12 L 16 0 L 18 0 L 18 2 L 6 16 L 0 8 L 0 6 L 2 6";
-    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-color:		-mark;
 	-fx-background-insets: 		0px;
 	-fx-background-radius: 		0px;
 }
@@ -74,7 +73,7 @@
     -fx-max-height: 			10;
     -fx-min-height: 			10;
 	-fx-shape: 					"M 0 0 L 4 0 L 4 4 L 0 4 L 0 0";
-    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-color:		-mark;
 	-fx-background-insets: 		0px;
 	-fx-background-radius: 		0px;
 }
@@ -102,7 +101,7 @@
     -fx-max-height: 			8;
     -fx-min-height: 			8;
 	-fx-shape: 					"M 1 0 L 1 0 L 5 4 L 9 0 L 10 1 L 5 6 L 0 1 L 1 0";
-    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-color:		-mark;
     -fx-background-insets: 		0;
     -fx-background-radius: 		0;
 	-fx-border-color:			transparent;
@@ -119,7 +118,7 @@
     -fx-max-height: 			8;
     -fx-min-height: 			8;
 	-fx-shape: 					"M 5 0 L 0 5 L 5 0 L 10 5 L 9 6 L 5 2 L 1 6 L 0 5";
-    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-color:		-mark;
     -fx-background-insets: 		0;
     -fx-background-radius: 		0;
 }
@@ -138,7 +137,7 @@
     -fx-max-height: 			10;
     -fx-min-height: 			10;
 	-fx-shape : 				"M 1 0 L 1 0 L 6 5 L 1 10 L 0 9 L 4 5 L 0 1 L 1 0";
-    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-color:		-mark;
     -fx-background-insets: 		0;
     -fx-background-radius: 		0;
  }
@@ -155,7 +154,7 @@
     -fx-max-height: 			10;
     -fx-min-height: 			10;
 	-fx-shape : 				"M 5 0 L 6 1 L 2 5 L 6 9 L 5 10 L 0 5 L 5 0 L 5 0";
-    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-color:		-mark;
     -fx-background-insets: 		0;
     -fx-background-radius: 		0;
  }
@@ -263,7 +262,9 @@
 .choice-box,
 .split-menu-button,
 .split-menu-button > .label,
-.split-menu-button > .arrow-button
+.split-menu-button > .arrow-button,
+.color-palette ,
+.custom-color-dialog .controls-pane .customcolor-controls-background 
 {
 	-base:						-control-base;
 	-border:					-control-border;
@@ -389,6 +390,113 @@
 .split-menu-button:showing > .arrow-button
 {
 	-border:					-control-border-armed;
+}
+
+
+
+/******************************************************************************
+		Chart                       									Done                     
+******************************************************************************/	
+.chart
+{
+    -fx-padding: 				10px;
+}
+.chart-content 
+{
+    -fx-padding: 				30px;    
+}
+.chart-legend
+{
+   -fx-background-color:  		transparent;
+   -fx-padding: 				20px;
+}
+.chart-legend-item-symbol
+{
+   -fx-background-radius: 		0;
+}
+.chart-legend-item
+{
+    -fx-text-fill: 				-text;
+}
+.chart-plot-background 
+{
+    -fx-background-color: 		transparent;
+}
+.chart-vertical-grid-lines,
+.chart-horizontal-grid-lines  
+{
+    -fx-stroke: 				derive(-control-base,-15%);
+}
+.axis 
+{
+    -fx-tick-length: 			10;
+    -fx-minor-tick-length: 		5;
+	-fx-stroke:					-base;
+}
+.axis-tick-mark 
+{
+	-fx-stroke: 				derive(-control-base,-45%);
+    -fx-stroke-width:			2; 
+	-fx-stroke-radius:			0;
+}
+.axis-minor-tick-mark 
+{
+    -fx-stroke: 				derive(-control-base,-25%);
+	 -fx-stroke-width: 			1; 
+}
+/******************************************************************************
+		Dialog                       									Done                     
+******************************************************************************/	
+.dialog-pane:header .header-panel 
+{
+   -fx-background-color: 		-root-base;
+}
+ 
+.dialog-pane 
+{
+    -fx-background-color: 		-root-front;
+	-fx-background-insets:		0;
+}
+.text-input-dialog.dialog-pane,
+.choice-dialog.dialog-pane,
+.alert.confirmation.dialog-pane,
+.alert.information.dialog-pane,
+.alert.error.dialog-pane,
+.alert.warning.dialog-pane 
+{
+    -fx-graphic: 				null;
+}
+
+/******************************************************************************
+		ColorPicker                       								Done                     
+******************************************************************************/	
+.color-palette 
+{
+	-base:						derive(-root-base,-1%);
+	-border:					derive(-root-base,-20%);
+	-fx-padding: 				3;
+}
+.custom-color-dialog .controls-pane .customcolor-controls-background {
+    -base:					-root-front;
+	-border:				-control-border;
+}
+
+/******************************************************************************
+		Hyperlink                       								Done                     
+******************************************************************************/	
+.hyperlink 
+{
+	-fx-background-color:		transparent;
+	-fx-border-color:			transparent;
+    -fx-text-fill: 				-border-focused;
+}
+.hyperlink:focused,
+.hyperlink:hover,
+.hyperlink:visited,
+.hyperlink:hover:visited,
+.hyperlink:visited:armed 
+{
+    -fx-underline: 				true;
 }
 /******************************************************************************
 		ListView / TreeView                       						Done                     

@@ -22,11 +22,11 @@ public enum StainTheme
     /**
      * A lighter theme.
      */
-    LIGHT(StainTheme.class.getResource("stylesheets/stainstyle.css")),
+    LIGHT(StainTheme.class.getResource("stylesheets/stainlightstyle.css")),
     /**
      * A dark theme.
      */
-    DARK(StainTheme.class.getResource("stylesheets/stainstyle.css"));
+    DARK(StainTheme.class.getResource("stylesheets/staindarkstyle.css"));
 
 
     private final URL styleSheetURL;
