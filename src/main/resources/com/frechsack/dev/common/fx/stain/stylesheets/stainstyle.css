@@ -1,0 +1,1169 @@
+.root
+{
+	/******************************************************************************
+		General                                            
+	******************************************************************************/	
+	-root-base:					rgb(240,240,240);
+	-root-front:				white;
+	
+	-border-focused:			rgb(0,120,215);
+	-text:						black;
+	-progress:					green;
+	/*-progress-gradient:			derive(-progress,100%),linear-gradient( to right, -progress, transparent);*/
+	/******************************************************************************
+		Controls                                               
+	******************************************************************************/	
+	-control-base:				rgb(225,225,225);
+	-control-base-hover:		rgb(229,241,251);
+	-control-base-armed:		rgb(204,228,247);
+	
+	-control-border:			rgb(173,173,173);
+	-control-border-hover:		rgb(0,120,215);
+	-control-border-armed: 		rgb(0,84,153);
+	
+	-text-control-base:			white;
+	
+	/******************************************************************************
+		Items  (Selected -> Just one state) (Focused -> More than one)                                           
+	******************************************************************************/	
+	
+	-item-base-selected:		rgb(145,201,247);
+	-item-base-focused:			rgb(86,176,250);
+	/******************************************************************************
+		General defaults                                                
+	******************************************************************************/	
+	-fx-background-color: 		-root-base;
+	-fx-background-radius:		0,0;
+	-fx-font-family:			"SegoeUI";
+	-fx-font-size: 				12;
+	-fx-text-fill: 				-text;
+	-fx-text-base-color: 		-text;
+	-fx-text-inner-color: 		-text;
+	-fx-selection-bar-text: 	-text;
+	-fx-text-background-color: 	-text;
+}
+
+
+/******************************************************************************
+		CheckMark                                          
+******************************************************************************/	
+.check-menu-item:checked > .left-container >.check,
+.check-box:selected > .box > .mark 
+{
+	-fx-pref-width: 			10;
+    -fx-max-width: 				10;
+    -fx-min-width: 				10;
+    -fx-pref-height: 			10;
+    -fx-max-height: 			10;
+    -fx-min-height: 			10;
+	-fx-shape: 					"M 2 6 L 6 12 L 16 0 L 18 0 L 18 2 L 6 16 L 0 8 L 0 6 L 2 6";
+    -fx-background-color:		derive(-control-base,-50%);
+	-fx-background-insets: 		0px;
+	-fx-background-radius: 		0px;
+}
+/******************************************************************************
+		RadioMark                                          
+******************************************************************************/	
+.radio-menu-item:checked > .left-container >.radio,
+.radio-button:selected > .radio > .dot 
+{
+	-fx-pref-width: 			10;
+    -fx-max-width: 				10;
+    -fx-min-width: 				10;
+    -fx-pref-height: 			10;
+    -fx-max-height: 			10;
+    -fx-min-height: 			10;
+	-fx-shape: 					"M 0 0 L 4 0 L 4 4 L 0 4 L 0 0";
+    -fx-background-color:		derive(-control-base,-50%);
+	-fx-background-insets: 		0px;
+	-fx-background-radius: 		0px;
+}
+
+/******************************************************************************
+		Arrows                                            
+******************************************************************************/	
+/*Bottom Direction*/
+.spinner > .decrement-arrow-button > .decrement-arrow,
+.split-menu-button > .arrow-button > .arrow,
+.combo-box-base >.arrow-button > .arrow,
+.menu-button > .arrow-button > .arrow,
+.choice-box > .open-button > .arrow,
+.menu-down-arrow,
+.titled-pane > .title > .arrow-button >.arrow,
+.scroll-bar:vertical > .increment-button > .increment-arrow ,
+.tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button > .arrow ,
+.column-header  .arrow ,
+.tool-bar > .tool-bar-overflow-button > .arrow
+{
+	-fx-pref-width: 			10;
+    -fx-max-width: 				10;
+    -fx-min-width: 				10;
+    -fx-pref-height: 			8;
+    -fx-max-height: 			8;
+    -fx-min-height: 			8;
+	-fx-shape: 					"M 1 0 L 1 0 L 5 4 L 9 0 L 10 1 L 5 6 L 0 1 L 1 0";
+    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-insets: 		0;
+    -fx-background-radius: 		0;
+	-fx-border-color:			transparent;
+}
+/*Top Direction*/
+.spinner > .increment-arrow-button > .increment-arrow,
+.menu-up-arrow,
+.scroll-bar:vertical > .decrement-button > .decrement-arrow 
+{
+	-fx-pref-width: 			10;
+    -fx-max-width: 				10;
+    -fx-min-width: 				10;
+    -fx-pref-height: 			8;
+    -fx-max-height: 			8;
+    -fx-min-height: 			8;
+	-fx-shape: 					"M 5 0 L 0 5 L 5 0 L 10 5 L 9 6 L 5 2 L 1 6 L 0 5";
+    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-insets: 		0;
+    -fx-background-radius: 		0;
+}
+/*right Direction*/
+ .menu > .right-container >.arrow,
+ .scroll-bar:horizontal > .increment-button > .increment-arrow ,
+ .pagination .pagination-control .right-arrow-button >.right-arrow,
+ .tree-cell > .tree-disclosure-node > .arrow ,
+ .date-picker-popup > * > .spinner > .button > .right-arrow,
+ .spinner.split-arrows-horizontal > .increment-arrow-button > .increment-arrow
+ {
+	-fx-pref-width: 			8;
+    -fx-max-width: 				8;
+    -fx-min-width: 				8;
+    -fx-pref-height: 			10;
+    -fx-max-height: 			10;
+    -fx-min-height: 			10;
+	-fx-shape : 				"M 1 0 L 1 0 L 6 5 L 1 10 L 0 9 L 4 5 L 0 1 L 1 0";
+    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-insets: 		0;
+    -fx-background-radius: 		0;
+ }
+/*left Direction*/
+ .scroll-bar:horizontal > .decrement-button > .decrement-arrow,
+ .pagination .pagination-control .left-arrow-button >.left-arrow ,
+ .date-picker-popup > * > .spinner > .button > .left-arrow,
+ .spinner.split-arrows-horizontal > .decrement-arrow-button > .decrement-arrow
+ {
+	-fx-pref-width: 			8;
+    -fx-max-width: 				8;
+    -fx-min-width: 				8;
+    -fx-pref-height: 			10;
+    -fx-max-height: 			10;
+    -fx-min-height: 			10;
+	-fx-shape : 				"M 5 0 L 6 1 L 2 5 L 6 9 L 5 10 L 0 5 L 5 0 L 5 0";
+    -fx-background-color:		derive(-control-base,-50%);
+    -fx-background-insets: 		0;
+    -fx-background-radius: 		0;
+ }
+/******************************************************************************
+		ToogleButton(The Toogle stands here, because the remaining defined rules should override this rules here.)                      
+******************************************************************************/ 
+.toggle-button:selected
+{
+	-base:						-control-base-armed;
+	-border:					-control-border-armed;
+}
+ 
+ 
+/******************************************************************************
+		Control with Item look                           
+******************************************************************************/  
+.menu-item ,
+.menu-item,
+.menu-item,
+.menu-item > .left-container,
+.context-menu > .scroll-arrow,
+.context-menu > .scroll-arrow,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.tree-view .tree-cell,
+.tree-view .tree-cell,
+.tree-view .tree-cell
+{
+	-base:						transparent;
+	-fx-background-color:		-base;
+	-fx-background-insets:		0;
+	-fx-background-radius:		0;
+}
+.menu-item:hover ,
+.menu-item:focused,
+.menu-item:selected,
+.menu-item:checked > .left-container,
+.context-menu > .scroll-arrow:hover,
+.context-menu > .scroll-arrow:selected,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:selected,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:focused,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:hover,
+.tree-view .tree-cell:selected,
+.tree-view .tree-cell:focused,
+.tree-view .tree-cell:hover
+{
+	-base:						-item-base-selected;
+}
+.menu-item:checked:hover > .left-container,
+.menu-item:checked:focused > .left-container,
+.context-menu > .scroll-arrow:checked:hover,
+.context-menu > .scroll-arrow:checked:focused,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:selected:hover,
+.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:focused:hover,
+.tree-view .tree-cell:selected:hover,
+.tree-view .tree-cell:focused:hover
+{
+	-base:						-item-base-focused; 
+}
+ 
+/******************************************************************************
+		Control with Real Borders                              
+******************************************************************************/ 
+.titled-pane >.content,
+.split-pane,
+.tab-pane >.tab-header-area >.tab-header-background,
+.scroll-pane,
+.scroll-pane.edge-to-edge
+{
+	-base:						-control-base;
+	-border:					-control-border;
+	-fx-background-color:		-base;
+	-fx-background-insets:		0;
+	-fx-background-radius:		0;
+	-fx-border-color:			-border;
+	-fx-border-width:			1;
+	-fx-border-radius:			0;
+} 
+/******************************************************************************
+		Control with BackgroundBorders                                  
+******************************************************************************/
+.spinner,
+.split-pane > .split-pane-divider,
+.titled-pane > .title,
+.menu-bar >.container >.menu-button,
+.progress-bar >.track,
+.slider > .track ,
+.slider > .thumb,
+.context-menu,
+.separator:horizontal >.line,
+.tab-pane > .tab-content-area,
+.tab-pane >.tab-header-area >.headers-region >.tab ,
+.menu-bar,
+.text-input,
+.list-view,
+.tree-view,
+.spinner > .decrement-arrow-button,
+.spinner > .increment-arrow-button,
+.combo-box-base:editable > .arrow-button,
+.button,
+.toggle-button,
+.menu-button,
+.combo-box-base,
+.choice-box,
+.split-menu-button,
+.split-menu-button > .label,
+.split-menu-button > .arrow-button
+{
+	-base:						-control-base;
+	-border:					-control-border;
+	-fx-background-color:		-border,-base;
+	-fx-background-insets:		0,1;
+	-fx-background-radius:		0,0;
+}
+/******************************************************************************
+		BaseDefaults                                
+******************************************************************************/
+.split-pane > .split-pane-divider:hover,
+.titled-pane > .title:hover,
+.slider > .thumb:hover,
+.tab-pane >.tab-header-area >.headers-region >.tab:hover ,
+.spinner > .decrement-arrow-button:hover,
+.spinner > .increment-arrow-button:hover,
+.combo-box-base:editable > .arrow-button:hover,
+.button:hover,
+.toggle-button:hover,
+.menu-button:hover,
+.combo-box-base:hover,
+.choice-box:hover,
+.split-menu-button > .arrow-button:hover,
+.split-menu-button > .label:hover
+{
+	-base:						-control-base-hover;
+}
+.split-pane > .split-pane-divider:pressed,
+.titled-pane > .title:pressed,
+.slider > .thumb:pressed,
+.spinner > .decrement-arrow-button:pressed,
+.spinner > .increment-arrow-button:pressed,
+.combo-box-base:editable > .arrow-button:pressed,
+.combo-box-base:editable:showing > .arrow-button,
+.button:pressed,
+.button:armed,
+.toggle-button:pressed,
+.toggle-button:armed,
+.menu-button:pressed,
+.menu-button:armed,
+.menu-button:showing,
+.combo-box-base:pressed,
+.combo-box-base:showing,
+.choice-box:pressed,
+.choice-box:showing,
+.split-menu-button > .arrow-button:pressed,
+.split-menu-button > .arrow-button:armed,
+.split-menu-button:showing > .arrow-button,
+.split-menu-button > .label:pressed,
+.split-menu-button:armed > .label
+{
+	-base:						-control-base-armed;
+}
+/******************************************************************************
+		BorderDefaults                                
+******************************************************************************/
+.spinner:focused,
+.titled-pane:focused > .title,
+.slider:focused > .thumb,
+.text-input:focused,
+.text-area:focused >  .scroll-pane,
+.list-view:focused,
+.tree-view:focused,
+.button:focused,
+.toggle-button:focused,
+.menu-button:focused,
+.combo-box-base:focused,
+.choice-box:focused,
+.split-menu-button:focused
+{
+	-border:					-border-focused;
+}
+.spinner:hover,
+.split-pane > .split-pane-divider:hover,
+.titled-pane > .title:hover,
+.slider > .thumb:hover,
+.tab-pane >.tab-header-area >.headers-region >.tab:hover ,
+.text-input:hover,
+.text-area:hover >  .scroll-pane,
+.list-view:hover,
+.tree-view:hover,
+.spinner > .decrement-arrow-button:hover,
+.spinner > .increment-arrow-button:hover,
+.combo-box-base:editable > .arrow-button:hover,
+.button:hover,
+.toggle-button:hover,
+.menu-button:hover,
+.combo-box-base:hover,
+.choice-box:hover,
+.split-menu-button:hover,
+.split-menu-button:hover > .arrow-button
+{
+	-border:					-control-border-hover;
+}
+.spinner:pressed,
+.split-pane > .split-pane-divider:pressed,
+.titled-pane > .title:pressed,
+.slider > .thumb:pressed,
+.text-input:pressed,
+.text-area:pressed >  .scroll-pane,
+.list-view:pressed,
+.tree-view:pressed,
+.spinner > .decrement-arrow-button:pressed,
+.spinner > .increment-arrow-button:pressed,
+.combo-box-base:editable > .arrow-button:pressed,
+.combo-box-base:editable:showing > .arrow-button,
+.button:pressed,
+.button:armed,
+.toggle-button:pressed,
+.toggle-button:armed,
+.menu-button:pressed,
+.menu-button:armed,
+.menu-button:showing,
+.combo-box-base:pressed,
+.combo-box-base:showing,
+.choice-box:pressed,
+.choice-box:showing,
+.split-menu-button:pressed,
+.split-menu-button:armed,
+.split-menu-button:showing,
+.split-menu-button:pressed > .arrow-button,
+.split-menu-button:armed > .arrow-button,
+.split-menu-button:showing > .arrow-button
+{
+	-border:					-control-border-armed;
+}
+/******************************************************************************
+		ListView / TreeView                       						Done                     
+******************************************************************************/	
+.list-view,
+.tree-view
+{
+	-base: 						-text-control-base;
+}
+/******************************************************************************
+	TextControls                                            			Done
+******************************************************************************/	
+.text-input
+{
+    -base:						-text-control-base;
+	-fx-highlight-fill:			-item-base-selected;
+	-fx-highlight-text-fill:	-text;
+}
+.text-input > Pane {
+    -fx-background-color: 		transparent;
+}
+.text-area
+{
+	-fx-background-color:		transparent;
+}
+.text-area > .scroll-pane
+{
+	-border:					-control-border;
+}
+.text-area .content
+{
+	-fx-background-color:		-text-control-base;
+	-fx-border-color:			transparent;
+}
+/******************************************************************************
+		ScrollBar                       								Done                    
+******************************************************************************/	
+.scroll-bar > .decrement-button,
+.scroll-bar > .increment-button
+{
+	-fx-background-color:		transparent;
+}
+.scroll-bar
+{
+	-fx-background-color: 		derive(-control-base,15%);
+	-fx-background-insets:		0;
+	-fx-padding:				0;
+}
+
+.scroll-bar > .thumb
+{
+	-base:						derive(-control-base,-10%);
+	-fx-padding:				0;
+	-fx-background-color:		-base;
+	-fx-background-radius:		0;
+	-fx-background-insets:		0;
+}
+.scroll-bar > .decrement-button,
+.scroll-bar > .increment-button
+{
+	-base:						transparent;
+	-fx-background-color:		-base;
+	-fx-background-radius:		0;
+	-fx-background-insets:		0;
+}
+.scroll-bar > .thumb:hover
+{
+	-base:						derive(-control-base,-20%);
+}
+.scroll-bar > .decrement-button:hover,
+.scroll-bar > .increment-button:hover
+{
+	-base:						derive(-control-base,-10%);
+}
+
+.scroll-bar > .thumb:pressed
+{
+	-base:						derive(-control-base,-30%);
+}
+.scroll-bar > .decrement-button:pressed,
+.scroll-bar > .increment-button:pressed
+{
+	-base:						derive(-control-base,-20%);
+}
+/******************************************************************************
+		ScrollPane                                         				Done
+******************************************************************************/
+.scroll-pane
+{
+	-border:					transparent;
+	-base:						transparent;
+	-fx-padding:				0;
+}
+.scroll-pane > .viewport
+{
+	-fx-background-color:		transparent;
+}
+.scroll-pane > .corner
+{
+	-fx-background-color:		derive(-control-base,15%);
+	-fx-background-insets:		0;
+}
+.scroll-pane.edge-to-edge
+{
+	-border:			transparent;
+}
+/******************************************************************************
+		TabPane                         								Done                
+******************************************************************************/
+.tab-pane
+{
+	-fx-padding: 				10;
+}
+
+.tab-pane >.tab-header-area >.tab-header-background
+ {
+	 -base:						transparent;
+	 -fx-border-width:			0 0 1 0;
+}
+.tab-pane >.tab-header-area >.headers-region,
+.tab-pane >.tab-header-area
+{
+	-fx-background-color:		transparent;
+	-fx-padding : 				0;
+}
+.tab-pane > .tab-content-area
+{
+	-base:						-root-front;
+}
+/*Tab*/
+.tab-pane:focused > .tab-header-area > .headers-region > .tab .focus-indicator 
+{
+	-fx-border-color:			transparent; 
+	-fx-border-width:			0;
+}
+.tab-pane >.tab-header-area >.headers-region >.tab:selected 
+{
+	-base:						-root-front;
+	-border:					-control-border;
+	-fx-background-insets:		0, 1 1 0 1;
+	-fx-padding: 				3 6 3 6;
+}
+/*Top*/
+.tab-pane:top > .tab-content-area
+{
+	-fx-background-insets: 		0, 0 1 1 1;
+}
+.tab-pane:right > .tab-content-area
+{
+	-fx-background-insets: 		0, 1 0 1 1;
+}
+.tab-pane:bottom > .tab-content-area
+{
+	-fx-background-insets: 		0, 1 1 0 1;
+}
+.tab-pane:left > .tab-content-area
+{
+	-fx-background-insets: 		0, 1 1 1 0;
+} 
+/******************************************************************************
+		Separator 														Done                                
+******************************************************************************/ 
+.separator:horizontal >.line
+{
+	-base:						-control-border;
+	-border:					transparent;
+	-fx-max-height:				2;
+	-fx-padding:				0;
+}
+/******************************************************************************
+		Slider    														Done                                     
+******************************************************************************/
+.slider > .thumb
+{
+	-fx-padding: 				12 5 12 5;
+}
+/******************************************************************************
+		ContextMenu                                         
+******************************************************************************/
+.context-menu
+{
+	-base:						derive(-root-base,-1%);
+	-border:					derive(-root-base,-20%);
+	-fx-padding: 				3;
+}
+/******************************************************************************
+		ProgessBar                   									Done                      
+******************************************************************************/
+.progress-bar
+{
+	-fx-indeterminate-bar-flip:				false;
+	-fx-indeterminate-bar-animation-time:	3;
+	-fx-indeterminate-bar-escape:			true;
+}
+.progress-bar >.bar
+{							
+	-fx-background-color:					derive(-progress,100%),linear-gradient( to right, -progress, transparent);
+	-fx-background-insets:					1;
+	-fx-background-radius:					0;
+}
+/******************************************************************************
+		MenuItem         												Done                                
+******************************************************************************/
+.menu-item
+{
+	-fx-padding : 				0;
+}
+.menu-item > .label
+{
+	-fx-padding: 				3 9 3 9;
+}
+.radio-menu-item:checked > .left-container >.radio,
+.check-menu-item:checked > .left-container >.check
+{
+	-fx-background-color:		derive(-item-base-focused,-55%);
+}
+.menu-item > .left-container
+{
+	-fx-pref-width: 			25;
+    -fx-max-width: 				25;
+    -fx-min-width: 				25;
+    -fx-pref-height: 			25;
+    -fx-max-height: 			25;
+    -fx-min-height: 			25;
+	-fx-padding: 				0;
+}
+.menu-item:hover .label,
+.menu-item:focused .label,
+.menu-item:selected .label
+{
+	-fx-text-fill:				-text;
+}
+/******************************************************************************
+		Menu Bar               											Done                        
+******************************************************************************/
+.menu-bar
+{
+	-base: 						derive(-root-front,-1%);
+	-border:					-base;
+	-fx-padding:				0;
+}
+.menu-bar >.container >.menu-button
+{
+	 -base:						transparent;
+	 -border:					derive(-base,-5%);
+	 -fx-padding: 				2 8 2 8;
+}
+.menu-bar > .container >.menu-button:hover , 
+.menu-bar > .container >.menu-button:focused
+ {
+	-base: 						derive(-item-base-selected,10%);
+ }
+.menu-bar > .container >.menu-button:showing 
+{
+	-base: 						derive(-item-base-focused,10%);
+}
+/*Hide Arrow of menu button*/
+.menu-bar > .container >.menu-button >.arrow-button
+{
+	-fx-padding: 				0px;
+}
+.menu-bar > .container >.menu-button >.arrow-button >.arrow
+{
+    -fx-max-width: 				0px;
+    -fx-min-width: 				0px;
+    -fx-max-height: 			0px;
+    -fx-min-height: 			0px;
+ }
+/******************************************************************************
+		Accordion         												Done                             
+******************************************************************************/ 
+.accordion .titled-pane > .title
+{
+	-fx-background-insets: 	 	0,0 1 1 1;
+}
+.accordion .first-titled-pane > .title
+{
+	-fx-background-insets: 	 	0,1;
+}
+.accordion .titled-pane > .title:hover,
+.accordion .titled-pane > .title:hover:pressed,
+.accordion .titled-pane:focused > .title
+{
+	-fx-background-insets: 		0,1;
+}
+/******************************************************************************
+		TitledPane														Done                                      
+******************************************************************************/ 
+.titled-pane >.content
+{
+	-base:						transparent;
+	-fx-border-width:			0 1 1 1;
+}
+.titled-pane:focused > .title > .arrow-button >.arrow
+{
+	-fx-effect:					null;
+}
+/******************************************************************************
+		Spinner  														Done                                     
+******************************************************************************/	
+.spinner
+{
+	-base:						-text-control-base;
+}
+.spinner > .text-field
+{
+	-fx-background-color:		transparent;
+}
+.spinner > .decrement-arrow-button,
+.spinner > .increment-arrow-button
+{
+	/*-base:						-text-control-base;*/
+}
+/*DefaultArrows*/
+.spinner > .increment-arrow-button
+{
+	-fx-background-insets:		1 1 -1 0,1 1 0 1;
+}
+.spinner > .decrement-arrow-button
+{
+	-fx-background-insets:		0 1 1 0,0 1 1 1;
+}
+.spinner > .decrement-arrow-button:hover,
+.spinner > .decrement-arrow-button:pressed
+{
+	-fx-background-insets:		-1 1 1 0,0 1 1 1;
+}
+/*ArrowsHorizontal */
+.spinner.split-arrows-horizontal > .increment-arrow-button 
+{
+	-fx-background-insets:		1 1 1 0, 1;
+}
+.spinner.split-arrows-horizontal > .decrement-arrow-button 
+{
+	-fx-background-insets:		1 0 1 1, 1;
+}
+/*ArrowsOnRightHorizontal */
+.spinner.arrows-on-right-horizontal > .increment-arrow-button 
+{
+	-fx-background-insets:		1 1 1 0, 1;
+}
+.spinner.arrows-on-right-horizontal > .decrement-arrow-button 
+{
+	-fx-background-insets:		1 0 1 0, 1 0 1 1;
+}
+.spinner.arrows-on-right-horizontal > .decrement-arrow-button:hover,
+.spinner.arrows-on-right-horizontal > .decrement-arrow-button:pressed
+{
+	-fx-background-insets:		1 -1 1 0 0, 1 0 1  1;
+}
+/*ArrowsOnLeftHorizontal */
+.spinner.arrows-on-left-horizontal > .increment-arrow-button 
+{
+	-fx-background-insets:		1 0 1 0 , 1;
+}
+.spinner.arrows-on-left-horizontal > .decrement-arrow-button 
+{
+	-fx-background-insets:		1 0 1 1 , 1 0 1 1;
+}
+.spinner.arrows-on-left-horizontal > .decrement-arrow-button:hover,
+.spinner.arrows-on-left-horizontall > .decrement-arrow-button:pressed
+{
+	-fx-background-insets:		1 -1 1 1 , 1 0 1 1;
+}
+/*ArrowsOnLeftVertical */
+.spinner.arrows-on-left-vertical > .increment-arrow-button 
+{
+	-fx-background-insets:		1 0 -1 1, 1 1 0 1 ;
+}
+.spinner.arrows-on-left-vertical > .decrement-arrow-button 
+{
+	-fx-background-insets:		0 0 1 1, 0 1 1 1;
+}
+.spinner.arrows-on-left-vertical > .decrement-arrow-button:hover,
+.spinner.arrows-on-left-vertical > .decrement-arrow-button:pressed
+{
+	-fx-background-insets:	   -1 0 1 1 , 0 1 1 1;
+}
+/*ArrowsVertical */
+.spinner.split-arrows-vertical  > .increment-arrow-button 
+{
+	-fx-background-insets:		1 1 0 1, 1;
+}
+.spinner.split-arrows-vertical  > .decrement-arrow-button 
+{
+	-fx-background-insets:		0 1 1 1, 1;
+}
+/******************************************************************************
+		Split Pane 														Done                                     
+******************************************************************************/ 
+.split-pane
+{
+	-base:						transparent;
+	-fx-padding:				0;
+}
+.split-pane > .split-pane-divider
+{
+	-fx-padding:				0 1 0 1;
+} 
+/******************************************************************************
+		Pagination NTODO                                    
+******************************************************************************/   
+
+/******************************************************************************
+		CheckBox / RadioButton     										Done                                       
+******************************************************************************/	
+.check-box > .box,
+.radio-button > .radio
+{
+	-fx-pref-width: 			25px;
+    -fx-max-width: 				25px;
+    -fx-min-width: 				25px;
+    -fx-pref-height: 			25px;
+    -fx-max-height: 			25px;
+    -fx-min-height: 			25px;
+	-border: 					-control-border;
+	-base:						transparent;
+	-fx-background-color:		-base;
+	-fx-background-insets: 		0px;
+    -fx-background-radius: 		0px;
+	-fx-border-color:			-border;
+	-fx-border-width:			1px;
+    -fx-border-radius:			0px;
+	-fx-padding : 				1px;
+}
+.check-box:focused > .box,
+.radio-button:focused > .radio
+{
+	-border:					-border-focused;
+	-fx-padding:				0;
+	-fx-border-width:			2;
+}
+.check-box > .box:hover,
+.radio-button > .radio:hover
+{
+	-border:					-control-border-hover;
+	-fx-padding:				1;
+	-fx-border-width:			1;
+}
+.check-box > .box:pressed,
+.check-box:armed > .box,
+.radio-button > .radio:pressed,
+.radio-button:armed > .radio
+{
+	-border:					-control-border-armed;
+	-fx-padding:				1;
+	-fx-border-width:			1;
+}
+/******************************************************************************
+		Button                                 							Done           
+******************************************************************************/	
+.button:default
+{
+	-base:						derive(-control-base-hover,5%);
+}
+/*Thick Focus Border*/
+.button:focused,
+.toggle-button:focused,
+.menu-button:focused
+{
+	-fx-background-insets:		0,2;
+}
+.button:hover,
+.toggle-button:hover,
+.menu-button:hover,
+.combo-box-base:hover,
+.choice-box:hover,
+.button:pressed,
+.button:armed,
+.toggle-button:pressed,
+.toggle-button:armed,
+.menu-button:pressed,
+.menu-button:armed,
+.menu-button:showing,
+.combo-box-base:pressed,
+.combo-box-base:showing,
+.choice-box:pressed,
+.choice-box:showing
+{
+	-fx-background-insets:		0,1;
+}
+/******************************************************************************
+		Editable ComboBox             									Done                               
+******************************************************************************/	
+.combo-box-base:editable
+{
+	-base:						-text-control-base;
+}
+.combo-box-base:editable > .arrow-button
+{
+	-fx-background-insets:		1 1 1 0, 1 1 1 1;
+}
+.combo-box-base:editable > .arrow-button:pressed,
+.combo-box-base:editable > .arrow-button:hover,
+.combo-box-base:editable:showing > .arrow-button
+{
+	-fx-background-insets:		0, 1;
+}
+.combo-box-base:editable > .text-input
+{
+	-fx-background-color:		transparent;
+	-fx-padding:				4 3 4 3;
+}
+/******************************************************************************
+		SplitMenuButton               									Done                           
+******************************************************************************/	
+.split-menu-button:focused
+{
+	-fx-background-insets:		0,2;
+}
+.split-menu-button:hover,
+.split-menu-button:armed,
+.split-menu-button:pressed,
+.split-menu-button:showing
+{
+	-fx-background-insets:		0,1;
+}
+
+.split-menu-button > .label
+{
+	-fx-background-insets:		1 0 1 1,1 0 1 1;
+}
+.split-menu-button:focused  > .label
+{
+	-fx-background-insets:		2 0 2 2,2 0 2 2;
+}
+.split-menu-button:hover > .label,
+.split-menu-button:armed > .label,
+.split-menu-button:showing > .label
+{
+	-fx-background-insets:		1 0 1 1,1 0 1 1;
+}
+
+.split-menu-button > .arrow-button
+{
+	-fx-background-insets:		1 1 1 0,1 1 1 1;
+}
+.split-menu-button:focused > .arrow-button
+{
+	-fx-background-insets:		2 2 2 0,2 2 2 1;
+}
+.split-menu-button:hover > .arrow-button,
+.split-menu-button:armed > .arrow-button,
+.split-menu-button:showing > .arrow-button
+{
+	-fx-background-insets:		1 1 1 0,1 1 1 1;
+}
+
+/******************************************************************************
+		Toolbar                                       					Done
+******************************************************************************/
+.tool-bar
+{
+	-fx-background-color: 		derive(-root-front,-1%);
+	-fx-padding:2;
+} 
+.tool-bar .button,
+.tool-bar .toggle-button,
+.tool-bar .menu-button,
+.tool-bar .combo-box-base,
+.tool-bar .choice-box
+{
+	-border:					-control-border;
+	-base:						transparent;
+	-fx-background-color:		-base;
+	-fx-border-width:			1;
+	-fx-border-radius:			0;
+	-fx-border-color:			-border;
+}
+/*ToggleButtonSelected*/
+.tool-bar .toggle-button:selected
+{
+	-border:					-control-border-armed;
+	-base:						-item-base-focused;
+}
+.tool-bar .button:focused,
+.tool-bar .toggle-button:focused,
+.tool-bar .menu-button:focused,
+.tool-bar .combo-box-base:focused,
+.tool-bar .choice-box:focused
+{
+	-border:					-border-focused;
+}
+.tool-bar .button:hover,
+.tool-bar .toggle-button:hover,
+.tool-bar .menu-button:hover,
+.tool-bar .combo-box-base:hover,
+.tool-bar .choice-box:hover
+{
+	-border:					-control-border-hover;
+	-base:						-item-base-selected;
+}
+.tool-bar .button:pressed,
+.tool-bar .button:armed,
+.tool-bar .toggle-button:pressed,
+.tool-bar .toggle-button:armed,
+.tool-bar .menu-button:pressed,
+.tool-bar .menu-button:armed,
+.tool-bar .menu-button:showing,
+.tool-bar .combo-box-base:pressed,
+.tool-bar .combo-box-base:showing,
+.tool-bar .choice-box:pressed,
+.tool-bar .choice-box:showing
+{
+	-border:					-control-border-armed;
+	-base:						-item-base-focused;
+}
+/******************************************************************************
+		Toolbar Checkbox/Radiobutton               						Done	
+******************************************************************************/
+.tool-bar .check-box > .box,
+.tool-bar .radio-button > .radio
+{
+	-fx-padding:				0;
+	-fx-border-width:			1;
+	-fx-pref-width:				27;
+	-fx-pref-height:			27;
+	-fx-min-width:				27;
+	-fx-min-height:				27;
+}
+
+.tool-bar .check-box:focused > .box,
+.tool-bar .radio-button:focused > .radio
+{
+	-border:					-border-focused;
+	-fx-padding:				0;
+	-fx-border-width:			1;
+}
+.tool-bar .check-box > .box:hover,
+.tool-bar .radio-button > .radio:hover
+{
+	-border:					-control-border-hover;
+	-fx-background-color:		-item-base-selected;
+	-fx-padding:				0;
+}
+.tool-bar .check-box > .box:pressed,
+.tool-bar .check-box:armed > .box,
+.tool-bar .radio-button > .radio:pressed,
+.tool-bar .radio-button:armed > .radio
+{
+	-border:					-control-border-armed;
+	-fx-padding:				0;
+	-fx-border-width:			1;
+}
+
+
+ /******************************************************************************
+		Toolbar Editable ComboBox               
+******************************************************************************/
+.tool-bar  .combo-box-base:editable
+{
+	-base:						transparent;
+}
+/*RightButton*/
+.tool-bar  .combo-box-base:editable > .arrow-button
+{
+	-base:						transparent;
+	-border:					-control-border;
+	-fx-background-color:		-base;
+	-fx-background-insets:		0;
+	-fx-background-radius:		0;
+	-fx-border-width:			0 0 0 1;
+	-fx-border-color:			-border;
+}
+.tool-bar  .combo-box-base:editable > .arrow-button:hover
+{
+	-base:						-item-base-selected;
+}
+.tool-bar .combo-box-base:editable > .arrow-button:pressed,
+.tool-bar .combo-box-base:editable:showing > .arrow-button
+{
+	-base:						-item-base-focused;
+}
+/*TextInput*/
+.tool-bar  .combo-box-base:editable > .text-input
+{
+	-base:						transparent;
+	-fx-background-color:		-base;
+	-fx-padding:				4 3 4 3;
+}
+.tool-bar  .combo-box-base:editable > .text-input:hover
+{
+	-base:						-item-base-selected;
+}
+.tool-bar  .combo-box-base:editable > .text-input:pressed
+{
+	-base:						-item-base-focused;
+}
+/*SharedButtonBorder*/
+.tool-bar  .combo-box-base:editable:hover > .arrow-button
+{
+	-border:					-control-border-hover;
+}
+.tool-bar  .combo-box-base:editable:pressed > .arrow-button,
+.tool-bar  .combo-box-base:editable:showing > .arrow-button
+{
+	-border:					-control-border-armed;
+}
+
+/******************************************************************************
+		Toolbar SplitMenuButton         								Done
+******************************************************************************/
+.tool-bar  .split-menu-button
+{
+	-base: 						transparent;
+	-border:					-control-border;
+	-fx-background-color:		-base;
+	-fx-background-radius:		0;
+	-fx-background-insets:		0;
+	-fx-border-color:			-border;
+	-fx-border-radius:			1;
+}
+.tool-bar .split-menu-button:focused
+{
+	-border:					-border-focused;
+}
+.tool-bar .split-menu-button:hover
+{
+	-border:					-control-border-hover;
+}
+.tool-bar .split-menu-button:armed,
+.tool-bar .split-menu-button:pressed,
+.tool-bar .split-menu-button:showing
+{
+	-border:					-control-border-armed;
+}
+/*RightButton*/
+.tool-bar .split-menu-button > .arrow-button
+{
+	-base:						transparent;
+	-border:					-control-border;
+	-fx-background-insets:		0;
+	-fx-background-color:		-base;
+	-fx-background-radius:		0;
+	-fx-border-color:			-border;
+	-fx-border-width:			0 0 0 1;
+}
+.tool-bar .split-menu-button > .arrow-button:hover
+{
+	-base:						-item-base-selected;
+}
+.tool-bar .split-menu-button > .arrow-button:pressed,
+.tool-bar .split-menu-button:showing  > .arrow-button
+{
+	-base:						-item-base-focused;
+}
+/*Label*/
+.tool-bar .split-menu-button > .label
+{
+	-base:						transparent;
+	-fx-background-color:		-base;
+	-fx-background-insets:		0;
+	-fx-background-radius:		0;
+}
+.tool-bar .split-menu-button > .label:hover
+{
+	-base:						-item-base-selected;
+}
+.tool-bar .split-menu-button > .label:pressed,
+.tool-bar .split-menu-button:armed > .label
+{
+	-base:						-item-base-focused;
+}
+/*SharedButtonBorder*/
+.tool-bar .split-menu-button:hover > .arrow-button
+{
+	-border:					-control-border-hover;
+}
+.tool-bar .split-menu-button:pressed > .arrow-button,
+.tool-bar .split-menu-button:showing > .arrow-button,
+.tool-bar .split-menu-button:armed > .arrow-button
+{
+	-border:					-control-border-armed;
+}
+
+
+
+
