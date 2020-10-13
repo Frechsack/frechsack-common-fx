@@ -264,7 +264,16 @@
 .split-menu-button > .label,
 .split-menu-button > .arrow-button,
 .color-palette ,
-.custom-color-dialog .controls-pane .customcolor-controls-background 
+.custom-color-dialog .controls-pane .customcolor-controls-background,
+.tooltip,
+.table-view,
+.tree-table-view,
+.table-view .column-header,
+.tree-table-view .column-header,
+.table-view .filler,
+.tree-table-view .filler,
+.table-view > .column-header-background > .show-hide-columns-button,
+.tree-table-view  > .column-header-background > .show-hide-columns-button
 {
 	-base:						-control-base;
 	-border:					-control-border;
@@ -288,7 +297,9 @@
 .combo-box-base:hover,
 .choice-box:hover,
 .split-menu-button > .arrow-button:hover,
-.split-menu-button > .label:hover
+.split-menu-button > .label:hover,
+.table-view > .column-header-background > .show-hide-columns-button:hover,
+.tree-table-view > .column-header-background > .show-hide-columns-button:hover
 {
 	-base:						-control-base-hover;
 }
@@ -314,7 +325,9 @@
 .split-menu-button > .arrow-button:armed,
 .split-menu-button:showing > .arrow-button,
 .split-menu-button > .label:pressed,
-.split-menu-button:armed > .label
+.split-menu-button:armed > .label,
+.table-view > .column-header-background > .show-hide-columns-button:pressed,
+.tree-table-view > .column-header-background > .show-hide-columns-button:pressed
 {
 	-base:						-control-base-armed;
 }
@@ -333,7 +346,9 @@
 .menu-button:focused,
 .combo-box-base:focused,
 .choice-box:focused,
-.split-menu-button:focused
+.split-menu-button:focused,
+.table-view:focused,
+.tree-table-view:focused
 {
 	-border:					-border-focused;
 }
@@ -355,7 +370,11 @@
 .combo-box-base:hover,
 .choice-box:hover,
 .split-menu-button:hover,
-.split-menu-button:hover > .arrow-button
+.split-menu-button:hover > .arrow-button,
+.table-view:hover,
+.tree-table-view:hover,
+.table-view > .column-header-background > .show-hide-columns-button:hover,
+.tree-table-view > .column-header-background > .show-hide-columns-button:hover
 {
 	-border:					-control-border-hover;
 }
@@ -365,8 +384,8 @@
 .slider > .thumb:pressed,
 .text-input:pressed,
 .text-area:pressed >  .scroll-pane,
-.list-view:pressed,
-.tree-view:pressed,
+/*.list-view:pressed,
+.tree-view:pressed,*/
 .spinner > .decrement-arrow-button:pressed,
 .spinner > .increment-arrow-button:pressed,
 .combo-box-base:editable > .arrow-button:pressed,
@@ -387,13 +406,131 @@
 .split-menu-button:showing,
 .split-menu-button:pressed > .arrow-button,
 .split-menu-button:armed > .arrow-button,
-.split-menu-button:showing > .arrow-button
+.split-menu-button:showing > .arrow-button,
+.table-view > .column-header-background > .show-hide-columns-button:pressed,
+.tree-table-view > .column-header-background > .show-hide-columns-button:pressed
 {
 	-border:					-control-border-armed;
 }
+/******************************************************************************
+		ProgressIndicator										                                     
+******************************************************************************/ 
+ProgressIndicator
+{
+	-fx-skin:			"com.frechsack.dev.common.fx.stain.skin.StainProgressIndicatorSkin";
+}
 
+.progress-indicator 
+{
+	-fx-background-color:yellow;
+}
+/*
+.progress-indicator .indicator,
+.progress-indicator .progress
+{
+	-fx-pref-width: 			128;
+    -fx-max-width: 				128;
+    -fx-min-width: 				128;
+    -fx-pref-height: 			20;
+    -fx-max-height: 			20;
+    -fx-min-height: 			20;
+	-fx-shape : 				"M 0 0 L 60 0 L 60 20 L 0 20 L 0 0";
+    -fx-background-color:		red;
+    -fx-background-insets: 		0;
+    -fx-background-radius: 		0;
+}
+.progress-indicator .text
+{
+	-fx-text-alignment:center;
+	-fx-text-origin:center;
+}
 
-
+*/
+/******************************************************************************
+		TableView / Treetableview 										Done												                                     
+******************************************************************************/ 
+.table-view,
+.tree-table-view
+{
+	-base:								-text-control-base;
+}
+.table-view .column-header,
+.tree-table-view .column-header
+{
+	-fx-background-insets:				0,0 1 1 0;
+}
+.table-view .column-header:hover,
+.tree-table-view .column-header:hover
+{
+	-base:								-item-base-selected;
+}
+.table-view .column-header.table-column-selected,
+.tree-table-view .column-header.table-column-selected
+ {
+    -base:								-item-base-focused;
+}
+.table-view .column-header-background .column-drag-header ,
+.tree-table-view .column-header-background .column-drag-header
+{ 
+    -fx-background-color:				-item-base-selected;
+}
+.table-view .column-resize-line,
+.tree-table-view .column-resize-line
+{
+	-fx-background-color:				-control-border-hover;
+	-fx-padding: 						1 1 1 1;
+}
+.table-view .filler,
+.tree-table-view .filler
+{
+	-fx-background-insets:				0,0 0 1 0;
+}
+.table-view > .column-header-background > .show-hide-columns-button,
+.tree-table-view > .column-header-background > .show-hide-columns-button
+{
+	-fx-background-insets:				0,0 0 1 1;
+}
+.table-view > .column-header-background > .show-hide-columns-button > .show-hide-column-image,
+.tree-table-view > .column-header-background > .show-hide-columns-button > .show-hide-column-image
+{
+	-fx-background-color:				-mark;
+}
+/*Cells*/
+.table-cell ,
+.tree-table-cell
+{
+	-base:								transparent;
+	-fx-background-color:				-base;
+	-fx-border-color:					-control-border;
+	-fx-border-width:					0 1 0 0;
+}
+.table-view > .virtual-flow > .clipped-container > .sheet > .table-row-cell,
+.tree-table-view > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell  {
+	-base:							transparent;
+	-fx-background-color:			-base;
+	-fx-border-color:				-control-border;
+	-fx-border-width:				0 0 1 0;
+}
+.table-view > .virtual-flow > .clipped-container > .sheet > .table-row-cell:selected,
+.tree-table-view > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:selected {
+    -base: 							-item-base-selected;
+}
+.table-view > .virtual-flow > .clipped-container > .sheet > .table-row-cell:selected:hover,
+.tree-table-view > .virtual-flow > .clipped-container > .sheet > .tree-table-row-cell:selected:hover {
+    -base:							-item-base-focused;
+}
+/* Only the selected & hovered cell is painted darker.
+.table-view > .virtual-flow > .clipped-container > .sheet > .table-row-cell:selected > .table-cell:hover {
+    -base:							-item-base-focused;
+}*/
+/******************************************************************************
+		ToolTip															Done 														                                     
+******************************************************************************/ 
+.tooltip
+{
+	-fx-text-fill:				-text;
+	-base:						derive(-control-base,25%);
+}
 /******************************************************************************
 		Chart                       									Done                     
 ******************************************************************************/	
@@ -708,11 +845,6 @@
 {
 	-fx-padding: 				3 9 3 9;
 }
-.radio-menu-item:checked > .left-container >.radio,
-.check-menu-item:checked > .left-container >.check
-{
-	-fx-background-color:		derive(-item-base-focused,-55%);
-}
 .menu-item > .left-container
 {
 	-fx-pref-width: 			25;
@@ -728,6 +860,11 @@
 .menu-item:selected .label
 {
 	-fx-text-fill:				-text;
+}
+.custom-menu-item
+{
+	-fx-background-color:		transparent;
+	-base:						transparent;
 }
 /******************************************************************************
 		Menu Bar               											Done                        

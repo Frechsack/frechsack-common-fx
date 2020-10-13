@@ -6,4 +6,6 @@ module frechsack.common.fx
     exports com.frechsack.dev.common.fx.geometry;
     exports com.frechsack.dev.common.fx.wirl;
     exports com.frechsack.dev.common.fx.stain;
+    exports com;
+    exports com.frechsack.dev.common.fx.stain.skin;
 }

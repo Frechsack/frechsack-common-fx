@@ -573,7 +573,7 @@
  ******************************************************************************/
  Slider
  {
-	 -fx-skin: "com.frechsack.dev.common.fx.wirl.skin.WirlSliderSkin";
+	 /*-fx-skin: "com.frechsack.dev.common.fx.wirl.skin.WirlSliderSkin";*/
  }
  
 .slider

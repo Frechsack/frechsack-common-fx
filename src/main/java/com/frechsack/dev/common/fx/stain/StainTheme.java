@@ -18,19 +18,20 @@ public enum StainTheme
     /**
      * The default theme.
      */
-    DEFAULT(StainTheme.class.getResource("stylesheets/stainstyle.css")),
+    DEFAULT(StainTheme.class.getResource("stainstyle.css")),
     /**
      * A lighter theme.
      */
-    LIGHT(StainTheme.class.getResource("stylesheets/stainlightstyle.css")),
+    LIGHT(StainTheme.class.getResource("stainlightstyle.css")),
     /**
      * A dark theme.
      */
-    DARK(StainTheme.class.getResource("stylesheets/staindarkstyle.css"));
+    DARK(StainTheme.class.getResource("staindarkstyle.css"));
 
 
     private final URL styleSheetURL;
     private Map<StainColor, Color> colorMap;
+
     StainTheme(URL styleSheetURL)
     {
         this.styleSheetURL = styleSheetURL;
