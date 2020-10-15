@@ -128,7 +128,8 @@
  .pagination .pagination-control .right-arrow-button >.right-arrow,
  .tree-cell > .tree-disclosure-node > .arrow ,
  .date-picker-popup > * > .spinner > .button > .right-arrow,
- .spinner.split-arrows-horizontal > .increment-arrow-button > .increment-arrow
+ .spinner.split-arrows-horizontal > .increment-arrow-button > .increment-arrow,
+ .date-picker-popup > * > .spinner > .button > .right-arrow
  {
 	-fx-pref-width: 			8;
     -fx-max-width: 				8;
@@ -145,7 +146,8 @@
  .scroll-bar:horizontal > .decrement-button > .decrement-arrow,
  .pagination .pagination-control .left-arrow-button >.left-arrow ,
  .date-picker-popup > * > .spinner > .button > .left-arrow,
- .spinner.split-arrows-horizontal > .decrement-arrow-button > .decrement-arrow
+ .spinner.split-arrows-horizontal > .decrement-arrow-button > .decrement-arrow,
+ .date-picker-popup > * > .spinner > .button > .left-arrow
  {
 	-fx-pref-width: 			8;
     -fx-max-width: 				8;
@@ -413,6 +415,64 @@
 	-border:					-control-border-armed;
 }
 /******************************************************************************
+		DateChooser Dialog										                                     
+******************************************************************************/ 
+/*Spinner*/
+.date-picker-popup > * > .spinner
+{ 
+	-fx-padding:			0 1 0 1;
+}
+.date-picker-popup > * > .spinner .spinner-label
+{ 
+	-fx-padding:			3;
+}
+.date-picker-popup > * > .spinner .button
+{
+	-fx-padding:			3 6 3 6;
+}
+.date-picker-popup > * > .spinner .left-button
+{
+	-fx-background-insets:	0,0 1 0 0;
+}
+.date-picker-popup > * > .spinner .right-button
+{
+	-fx-background-insets:	0,0 0 0 1;
+}
+/*DateSelection*/
+.date-picker-popup > .month-year-pane 
+{
+   -fx-background-color:	derive(-root-base,-20%),-root-base;
+   -fx-background-insets:	0,0 0 1 0;
+}
+.date-picker-popup > .calendar-grid,
+.date-picker-popup > * > .day-name-cell,
+.date-picker-popup > * > .week-number-cell {
+	-fx-background-color:	-root-front;
+}
+.date-picker-popup > * > .day-cell.previous-month,
+.date-picker-popup > * > .day-cell.next-month {
+	-fx-background-color:	derive(-text-control-base,-5%);
+}
+/* Day Cells */
+.date-picker-popup > * > .day-cell {
+	-fx-background-color:	-text-control-base;
+	-fx-border-color:		derive(-root-base,-20%);
+	-fx-border-width:		1 0 0 1;
+}
+.date-picker-popup > * > .day-cell:hover,
+.date-picker-popup > * > .day-cell.selected {
+	-fx-background-insets:	0,2;
+	-fx-background-color:	-control-border-hover,-item-base-selected;
+}
+.date-picker-popup > * > .day-cell.selected:hover {
+	-fx-background-color:	-control-border-hover,-item-base-focused;
+}
+.date-picker-popup > * > .today {
+	-fx-background-color:	-control-base;
+}
+
+
+/******************************************************************************
 		ProgressIndicator										                                     
 ******************************************************************************/ 
 ProgressIndicator
@@ -422,7 +482,7 @@ ProgressIndicator
 
 .progress-indicator 
 {
-	-fx-background-color:yellow;
+	/*-fx-background-color:yellow;*/
 }
 /*
 .progress-indicator .indicator,
@@ -815,7 +875,7 @@ ProgressIndicator
 ******************************************************************************/
 .context-menu
 {
-	-base:						derive(-root-base,-1%);
+	-base:						derive(-root-base,-2%);
 	-border:					derive(-root-base,-20%);
 	-fx-padding: 				3;
 }

@@ -53,7 +53,7 @@ public enum FillMode
 
     /**
      * Returns the {@code Orientations} that are contained in this {@code FillNode}.
-     * @return
+     * @return The Orientations of this FillMode.
      */
     public Orientation[] getOrientations()
     {
